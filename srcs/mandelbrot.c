@@ -6,14 +6,14 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 18:09:14 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/27 18:10:45 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/03 19:21:05 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 float				ft_mandelbrot(t_complex c, t_complex z, int ite)
 {
 	int				i;
-	float			retval;
+	float			ret;
 
 	i = 0;
 	while (i < ite)
@@ -21,8 +21,8 @@ float				ft_mandelbrot(t_complex c, t_complex z, int ite)
 		z = ft_cadd(ft_csqr(z), c);
 		if (ft_checkvalue(z) > 100)
 		{
-			retval = (i + 1 - log(log(ft_checkvalue(z))) / log(2)) / ite;
-			return (retval);
+			ret = (i + 1 - log(log(ft_checkvalue(z))) / log(2)) / ite;
+			return (ret);
 		}
 		i++;
 	}
