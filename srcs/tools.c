@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:45:41 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/01/27 17:46:39 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/09 16:50:37 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,22 @@ void		ft_error(char *str)
 {
 	ft_putendl_fd(str, 2);
 	exit(-1);
+}
+
+float		ft_max(float a, float b, float c)
+{
+	if (a >= b && a >= c)
+		return (a);
+	if (b >= a && b >= c)
+		return (b);
+	return (c);
+}
+
+float		ft_min(float a, float b, float c)
+{
+	if (a <= b && a <= c)
+		return (a);
+	if (b <= a && b <= c)
+		return (b);
+	return (c);
 }

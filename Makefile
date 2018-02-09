@@ -6,15 +6,21 @@
 #    By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/26 04:36:14 by bsiguret          #+#    #+#              #
-#    Updated: 2018/01/28 06:11:19 by bsiguret         ###   ########.fr        #
+#    Updated: 2018/02/09 16:50:26 by bsiguret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	fractol
 SRCS_NAME		=	main.c\
 					paraminit.c\
+					paraminit2.c\
 					tools.c\
 					mandelbrot.c\
+					hook.c\
+					compfunc.c\
+					color.c\
+					color2.c\
+					colorgradient.c
 
 SRCS_PATH		=	srcs/
 SRCS			=	$(addprefix $(SRCS_PATH), $(SRCS_NAME))
@@ -23,7 +29,7 @@ OBJ_PATH		=	obj/
 OBJ				=	$(addprefix $(OBJ_PATH), $(OBJ_NAME))
 FLAGS			=	-Wall -Werror -Wextra -g
 INC				=	-I./includes/ -I./libft/ -I./minilibx_macos/
-LIB				=  -I /usr/X11/include -L /usr/X11/lib libmlx.a -framework OpenGL -framework AppKit -Llibft -lft
+LIB				=  -I libmlx.a -lmlx -framework OpenGL -framework AppKit -Llibft -lft
 
 $(NAME): $(OBJ)
 	make -C libft/

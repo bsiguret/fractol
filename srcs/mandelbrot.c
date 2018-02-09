@@ -6,9 +6,11 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 18:09:14 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/03 19:21:05 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/09 16:06:07 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "fractol.h"
 
 float				ft_mandelbrot(t_complex c, t_complex z, int ite)
 {
@@ -29,11 +31,15 @@ float				ft_mandelbrot(t_complex c, t_complex z, int ite)
 	return (-1);
 }
 
+float				ft_checkvalue(t_complex comp)
+{
+	return (comp.r * comp.r + comp.i * comp.i);
+}
+
 void		mandelbrot_init(t_fractale *f)
 {
-	f->xmin = -2.0f;
-	f->xmax = 1.0f;
-	f->ymin = -1.0f;
-	f->ymax = 1.0f;
-	f->offx = -0.5f;
+	f->minx = -2.0f;
+	f->maxx = 1.0f;
+	f->miny = -1.0f;
+	f->maxy = 1.0f;
 }
