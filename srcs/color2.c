@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 16:39:31 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 02:00:19 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/10 16:05:53 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void			modifyrgb(int x, t_data *data)
 	x = (x < 121) ? 121 : x;
 	x = (x > 275) ? 275 : x;
 	if (data->clickedr)
-		data->editedcolor->rgb.r = round((float)(x - 121) / 154 * 255);
+		data->editedcolor->rgb.r = round((double)(x - 121) / 154 * 255);
 	else if (data->clickedg)
-		data->editedcolor->rgb.g = round((float)(x - 121) / 154 * 255);
+		data->editedcolor->rgb.g = round((double)(x - 121) / 154 * 255);
 	else if (data->clickedb)
-		data->editedcolor->rgb.b = round((float)(x - 121) / 154 * 255);
+		data->editedcolor->rgb.b = round((double)(x - 121) / 154 * 255);
 	data->editedcolor->value = rgb_to_int(data->editedcolor->rgb);
 	data->editedcolor->hsv = rgb_to_hsv(data->editedcolor->value);
 	data->colorchanged = 1;

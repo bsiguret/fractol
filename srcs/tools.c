@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:45:41 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 01:59:55 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/10 15:35:25 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		ft_error(char *str)
 	exit(-1);
 }
 
-float		ft_max(float a, float b, float c)
+double		ft_max(double a, double b, double c)
 {
 	if (a >= b && a >= c)
 		return (a);
@@ -36,11 +36,30 @@ float		ft_max(float a, float b, float c)
 	return (c);
 }
 
-float		ft_min(float a, float b, float c)
+double		ft_min(double a, double b, double c)
 {
 	if (a <= b && a <= c)
 		return (a);
 	if (b <= a && b <= c)
 		return (b);
 	return (c);
+}
+
+void			zoom(int zoom, int x, int y, t_data *d)
+{
+	t_complex	coordcursor;
+
+	d->onscreen->zoompos = ft_mousecoord(x, y, d->onscreen, d);
+	if (d->onscreen->zoom < 1 && zoom > 0)
+		d->onscreen->zoom *= 1.1;
+	else if (zoom <= 0)
+		d->onscreen->zoom /= 1.1;
+	coordcursor = ft_mousecoord(x, y, d->onscreen, d);
+	d->onscreen->offset.r -= (coordcursor.r - d->onscreen->zoompos.r);
+	d->onscreen->offset.i -= (coordcursor.i - d->onscreen->zoompos.i);
+	if (zoom > 0 && d->onscreen->ite > 0)
+		d->onscreen->ite -= 1;
+	else
+		d->onscreen->ite += 1;
+	d->onscreen->modified = 1;
 }

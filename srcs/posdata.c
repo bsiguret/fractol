@@ -6,13 +6,13 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/10 02:28:02 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 02:28:22 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/10 16:06:11 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_complex		ft_coordzoom(float x, float y, t_fractale *fra, t_data *data)
+t_complex		ft_coordzoom(double x, double y, t_fractale *fra, t_data *data)
 {
 	t_complex	comp;
 
@@ -25,7 +25,7 @@ t_complex		ft_coordzoom(float x, float y, t_fractale *fra, t_data *data)
 	return (comp);
 }
 
-t_complex		ft_mousecoord(float x, float y, t_fractale *fra, t_data *data)
+t_complex		ft_mousecoord(double x, double y, t_fractale *fra, t_data *data)
 {
 	t_complex	comp;
 
@@ -38,7 +38,7 @@ t_complex		ft_mousecoord(float x, float y, t_fractale *fra, t_data *data)
 	return (comp);
 }
 
-t_complex		ft_coord(float x, float y, t_fractale *fra, t_data *data)
+t_complex		ft_coord(double x, double y, t_fractale *fra, t_data *data)
 {
 	t_complex	comp;
 
@@ -51,7 +51,7 @@ t_complex		ft_coord(float x, float y, t_fractale *fra, t_data *data)
 	return (comp);
 }
 
-t_complex		ft_mcoord(float x, float y, t_fractale *fra, t_data *data)
+t_complex		ft_mcoord(double x, double y, t_fractale *fra, t_data *data)
 {
 	t_complex	comp;
 

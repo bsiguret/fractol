@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:33:20 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 01:59:45 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/10 18:13:03 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_data			*init(int fract)
 {
 	t_data	*data;
-
+	
 	data = (t_data*)ft_malloc(sizeof(t_data));
 	if (!(data->mlx = mlx_init()))
 		ft_error("Mlx init failed.");
@@ -56,7 +56,6 @@ t_fractale		*fractalinit(t_data *data)
 	fract->modified = 1;
 	img_init(fract, data);
 	fract->array = arrayinit(WIN_WIDTH, WIN_HEIGHT);
-	// fract->miniarray = arrayinit(WIN_WIDTH / 6, (WIN_HEIGHT - 125) / 5);
 	return (fract);
 }
 

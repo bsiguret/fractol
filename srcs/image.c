@@ -6,19 +6,11 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/10 02:10:25 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 02:14:10 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/10 18:37:54 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-// void				px_to_miniimg(t_fractale *fract, int x, int y, int c)
-// {
-// 	fract->miniimg_str[x * 4 + y * fract->imgx * 4] = int_to_rgb(c).b;
-// 	fract->miniimg_str[x * 4 + y * fract->imgx * 4 + 1] = int_to_rgb(c).g;
-// 	fract->miniimg_str[x * 4 + y * fract->imgx * 4 + 2] = int_to_rgb(c).r;
-// 	fract->miniimg_str[x * 4 + y * fract->imgx * 4 + 3] = 0;
-// }
 
 void				px_to_onscreenimg(t_data *data, int x, int y, int c)
 {
@@ -40,35 +32,14 @@ int					get_px_color(t_data *data, int x, int y)
 	return (get_rgb(r, g, b));
 }
 
-// int					put_image_to_image(char *imgtoput,
-// 		t_point imgp, t_point imgs, t_data *data)
-// {
-// 	int				x;
-// 	int				y;
-// 	int				offset;
+void				ft_printite(t_data *data)
+{
+	char *str;
 
-// 	offset = (imgp.y < 0) ? -imgp.y : 0;
-// 	imgp.y = (imgp.y < 0) ? 0 : imgp.y;
-// 	if (offset >= imgs.y - 1 || (y = -1) == 0)
-// 		return (0);
-// 	while (++y + offset < imgs.y)
-// 	{
-// 		if (y + imgp.y >= WINY || (x = -1) == 0)
-// 			break ;
-// 		while (++x < imgs.x)
-// 		{
-// 			ONSCREEN->img_str[(x + imgp.x) * 4 + (y + imgp.y) * WINX * 4] =
-// 				imgtoput[x * 4 + (y + offset) * imgs.x * 4];
-// 			ONSCREEN->img_str[(x + imgp.x) * 4 + (y + imgp.y) * WINX * 4 + 1] =
-// 				imgtoput[x * 4 + (y + offset) * imgs.x * 4 + 1];
-// 			ONSCREEN->img_str[(x + imgp.x) * 4 + (y + imgp.y) * WINX * 4 + 2] =
-// 				imgtoput[x * 4 + (y + offset) * imgs.x * 4 + 2];
-// 			ONSCREEN->img_str[(x + imgp.x) * 4 + (y + imgp.y) * WINX * 4 + 3] =
-// 				imgtoput[x * 4 + (y + offset) * imgs.x * 4 + 3];
-// 		}
-// 	}
-// 	return (0);
-// }
+	str = ft_itoa(data->onscreen->ite);
+	mlx_string_put(data->mlx, data->win, 800, 650, 0xFFFFFF, str);
+	free(str);
+}
 
 void				print_img(t_data *data)
 {
@@ -79,4 +50,16 @@ void				print_img(t_data *data)
 	yinc = data->onscreen->imgy + 25;
 	mlx_clear_window(data->mlx, data->win);
 	mlx_put_image_to_window(data->mlx, data->win, data->onscreen->img, 0, 0);
+}
+
+void				reset_func(t_data *d, t_fractale *f)
+{
+	f->zoompos.r = 0;
+	f->zoompos.i = 0;
+	f->zoom = 1;
+	f->offset.r = 0;
+	f->offset.i = 0;
+	f->tran.r = 0;
+	f->tran.i = 0;
+	ft_print(d, f);
 }

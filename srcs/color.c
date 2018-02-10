@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 16:39:26 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 02:00:21 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/10 16:07:18 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int			hsv_to_rgb(t_hsv hsv)
 {
-	float	c;
-	float	h;
-	float	x;
-	float	m;
+	double	c;
+	double	h;
+	double	x;
+	double	m;
 
-	c = (float)hsv.v / 100 * ((float)hsv.s / 100);
-	h = (float)hsv.h / 60;
-	x = c * (1 - fabsf(h - ((int)h / 2 * 2) - 1));
-	m = (float)hsv.v / 100 - c;
+	c = (double)hsv.v / 100 * ((double)hsv.s / 100);
+	h = (double)hsv.h / 60;
+	x = c * (1 - fabs(h - ((int)h / 2 * 2) - 1));
+	m = (double)hsv.v / 100 - c;
 	if (h >= 0 && h < 1)
 		return (get_rgb(round(c + m * 255), round(x + m * 255), round(m * 255)));
 	if (h >= 1 && h < 2)
@@ -39,24 +39,24 @@ int			hsv_to_rgb(t_hsv hsv)
 t_hsv		rgb_to_hsv(int color)
 {
 	t_hsv	hsv;
-	float	max;
-	float	min;
+	double	max;
+	double	min;
 
-	hsv.h = (float)int_to_rgb(color).r / 255 * 100;
-	hsv.s = (float)int_to_rgb(color).g / 255 * 100;
-	hsv.v = (float)int_to_rgb(color).b / 255 * 100;
+	hsv.h = (double)int_to_rgb(color).r / 255 * 100;
+	hsv.s = (double)int_to_rgb(color).g / 255 * 100;
+	hsv.v = (double)int_to_rgb(color).b / 255 * 100;
 	max = ft_max(hsv.h, hsv.s, hsv.v);
 	min = ft_min(hsv.h, hsv.s, hsv.v);
 	if (max == min)
 		hsv.h = 0;
 	else if (max == hsv.h)
-		hsv.h = (int)round((60 * ((float)(hsv.s - hsv.v) / (max - min)) + 360))
+		hsv.h = (int)round((60 * ((double)(hsv.s - hsv.v) / (max - min)) + 360))
 			% 360;
 	else if (max == hsv.s)
-		hsv.h = round(60 * ((float)(hsv.v - hsv.h) / (max - min)) + 120);
+		hsv.h = round(60 * ((double)(hsv.v - hsv.h) / (max - min)) + 120);
 	else
-		hsv.h = round(60 * ((float)(hsv.h - hsv.s) / (max - min)) + 240);
-	hsv.s = round((max == 0) ? 0 : (1 - (float)(min / max)) * 100);
+		hsv.h = round(60 * ((double)(hsv.h - hsv.s) / (max - min)) + 240);
+	hsv.s = round((max == 0) ? 0 : (1 - (double)(min / max)) * 100);
 	hsv.v = round(max);
 	return (hsv);
 }
@@ -65,7 +65,7 @@ void		modifyhue(int y, t_data *data)
 {
 	y = (y < 100) ? 100 : y;
 	y = (y > 279) ? 279 : y;
-	data->editedcolor->hsv.h = ((float)(279 - y) / 179 * 359);
+	data->editedcolor->hsv.h = ((double)(279 - y) / 179 * 359);
 	data->editedcolor->value = hsv_to_rgb(data->editedcolor->hsv);
 	data->editedcolor->rgb = int_to_rgb(data->editedcolor->value);
 	data->colorchanged = 1;
@@ -77,8 +77,8 @@ void		modifysv(int x, int y, t_data *data)
 	x = (x > 275) ? 275 : x;
 	y = (y < 100) ? 100 : y;
 	y = (y > 279) ? 279 : y;
-	data->editedcolor->hsv.s = ((float)(x - 96) / 179 * 100);
-	data->editedcolor->hsv.v = ((float)(279 - y) / 179 * 100);
+	data->editedcolor->hsv.s = ((double)(x - 96) / 179 * 100);
+	data->editedcolor->hsv.v = ((double)(279 - y) / 179 * 100);
 	data->editedcolor->value = hsv_to_rgb(data->editedcolor->hsv);
 	data->editedcolor->rgb = int_to_rgb(data->editedcolor->value);
 	data->colorchanged = 1;

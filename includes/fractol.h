@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:30:16 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 02:40:05 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/10 18:37:07 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@
 
 typedef struct		s_value
 {
-	float			r;
-	float			i;
+	double			r;
+	double			i;
 	int				ping;
-	float			value;
+	double			value;
 }					t_value;
 
 typedef struct		s_complex
 {
-	float			r;
-	float			i;
+	double			r;
+	double			i;
 }					t_complex;
 
 typedef struct		s_rgb
@@ -46,18 +46,17 @@ typedef struct		s_rgb
 
 typedef struct		s_hsv
 {
-	float			h;
-	float			s;
-	float			v;
+	double			h;
+	double			s;
+	double			v;
 }					t_hsv;
 
 typedef struct		s_color
 {
 	int				locked;
 	int				clicked;
-	int				hover;
 	int				value;
-	float			index;
+	double			index;
 	t_hsv			hsv;
 	t_rgb			rgb;
 	struct s_color	*next;
@@ -74,7 +73,7 @@ typedef	struct		s_fractale
 
 	t_complex		c;
 
-	float			zoom;
+	double			zoom;
 	t_complex		tran;
 	t_complex		zoompos;
 	t_complex		offset;
@@ -84,14 +83,14 @@ typedef	struct		s_fractale
 	int				imgx;
 	int				imgy;
 	int				modified;
-	float			minx;
-	float			maxx;
-	float			miny;
-	float			maxy;
+	double			minx;
+	double			maxx;
+	double			miny;
+	double			maxy;
 	void			*img;
 	char			*img_str;
 	t_value			**array;
-	float			(*formula)(t_complex, t_complex, int);
+	double			(*formula)(t_complex, t_complex, int);
 
 }					t_fractale;
 
@@ -104,11 +103,6 @@ typedef struct		s_data
 	int				winx;
 	int				winy;
 	int				locked;
-	int				menu;
-	int				scrollmenuoffset;
-	int				colormenu;
-	int				clickedsquare;
-	int				clickedrainbow;
 	int				clickedr;
 	int				clickedg;
 	int				clickedb;
@@ -158,34 +152,35 @@ void				screeninit(t_data *data, int fra);
 ** HOOK FUNCTIONS
 */
 
-int					button_on(int button, int x, int y, t_data *data);
-int					button_off(int button, int x, int y, t_data *data);
-// void				leftbuttonclick(int x, int y, t_data *data);
-// int					rightbuttonclick(int x, int y, t_data *data);
-void				mousewheel(int button, int x, int y, t_data *data);
+int					mousewheel(int button, int x, int y, t_data *data);
+int					key(int keycode, t_data *d);
+void				ite(int keycode, t_data *d);
+void				move(int keycode, t_data *data);
+int					maphandle(int x, int y, t_data *d);
+
 
 /*
 ** COMPLEX
 */
 
-t_complex			ft_comp(float x, float y);
+t_complex			ft_comp(double x, double y);
 t_complex			ft_cinv(t_complex c);
-float				ft_cmod(t_complex comp);
-float				ft_cangle(t_complex c);
+double				ft_cmod(t_complex comp);
+double				ft_cangle(t_complex c);
 t_complex			ft_conj(t_complex c);
 t_complex			ft_cmul(t_complex c1, t_complex c2);
 t_complex			ft_cadd(t_complex c1, t_complex c2);
 t_complex			ft_csqr(t_complex comp);
 t_complex			ft_cabs(t_complex c);
-t_complex			ft_cpow(t_complex c, float power);
+t_complex			ft_cpow(t_complex c, double power);
 
 /*
 ** MANDELBROT **
 */
 
-float				ft_mandelbrot(t_complex c, t_complex z, int ite);
+double				ft_mandelbrot(t_complex c, t_complex z, int ite);
 void				mandelbrot_init(t_fractale *f);
-float				ft_checkvalue(t_complex comp);
+double				ft_checkvalue(t_complex comp);
 
 /*
 ** COLOR **
@@ -206,11 +201,11 @@ void				ptrswap(t_fractale **ptr1, t_fractale **ptr2, t_data *data);
 ** COLOR GRADIENT **
 */
 
-int					rgb_grad(float retval, t_data *data, t_fractale *fract);
-float				ft_get_retval(float retval, t_data *data);
-int					ft_get_lastcolor(float retval, t_data *data);
-int					ft_get_firstcolor(float retval, t_data *data);
-int					getstep(unsigned char val1, unsigned char val2, float ret);
+int					rgb_grad(double retval, t_data *data, t_fractale *fract);
+double				ft_get_retval(double retval, t_data *data);
+int					ft_get_lastcolor(double retval, t_data *data);
+int					ft_get_firstcolor(double retval, t_data *data);
+int					getstep(unsigned char val1, unsigned char val2, double ret);
 void				*ft_coloredfractal(void *part);
 
 
@@ -227,17 +222,17 @@ void				*ft_fractal(void *part);
 void				print_img(t_data *data);
 int					get_px_color(t_data *data, int x, int y);
 void				px_to_onscreenimg(t_data *data, int x, int y, int c);
+void				ft_printite(t_data *data);
+void				reset_func(t_data *d, t_fractale *f);
 
 /*
 ** POS DATA
 */
-t_complex			ft_coordzoom(float x, float y, t_fractale *fra, t_data *data);
-t_complex			ft_mousecoord(float x, float y, t_fractale *fra, t_data *data);
-t_complex			ft_coord(float x, float y, t_fractale *fra, t_data *data);
-t_complex			ft_mcoord(float x, float y, t_fractale *fra, t_data *data);
+t_complex			ft_coordzoom(double x, double y, t_fractale *fra, t_data *data);
+t_complex			ft_mousecoord(double x, double y, t_fractale *fra, t_data *data);
+t_complex			ft_coord(double x, double y, t_fractale *fra, t_data *data);
+t_complex			ft_mcoord(double x, double y, t_fractale *fra, t_data *data);
 t_point				ft_point(int x, int y);
-
-
 
 /*
 ** TOOLS **
@@ -245,7 +240,8 @@ t_point				ft_point(int x, int y);
 
 void				*ft_malloc(int size);
 void				ft_error(char *str);
-float				ft_max(float a, float b, float c);
-float				ft_min(float a, float b, float c);
+double				ft_max(double a, double b, double c);
+double				ft_min(double a, double b, double c);
+void				zoom(int zoom, int x, int y, t_data *d);
 
 #endif

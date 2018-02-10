@@ -6,22 +6,22 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 16:39:39 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 02:00:18 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/10 16:06:15 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int				getstep(unsigned char val1, unsigned char val2, float ret)
+int				getstep(unsigned char val1, unsigned char val2, double ret)
 {
-	float	color;
+	double	color;
 
 	color = (val2 - val1) * ret;
 	color = roundl(color);
 	return (color);
 }
 
-int				ft_get_firstcolor(float retval, t_data *data)
+int				ft_get_firstcolor(double retval, t_data *data)
 {
 	int			color;
 	t_color		*ptr;
@@ -37,7 +37,7 @@ int				ft_get_firstcolor(float retval, t_data *data)
 	return (color);
 }
 
-int				ft_get_lastcolor(float retval, t_data *data)
+int				ft_get_lastcolor(double retval, t_data *data)
 {
 	int			color;
 	t_color		*ptr;
@@ -53,10 +53,10 @@ int				ft_get_lastcolor(float retval, t_data *data)
 	return (color);
 }
 
-float			ft_get_retval(float retval, t_data *data)
+double			ft_get_retval(double retval, t_data *data)
 {
-	float		inf;
-	float		sup;
+	double		inf;
+	double		sup;
 	t_color		*ptr;
 
 	ptr = data->color;
@@ -64,15 +64,15 @@ float			ft_get_retval(float retval, t_data *data)
 		ptr = ptr->next;
 	inf = ptr->index;
 	sup = ptr->next->index;
-	return ((float)(retval - inf) / (sup - inf));
+	return ((double)(retval - inf) / (sup - inf));
 }
 
-int				rgb_grad(float retval, t_data *data, t_fractale *fract)
+int				rgb_grad(double retval, t_data *data, t_fractale *fract)
 {
 	int			col1;
 	int			col2;
 	int			col3;
-	float		ret;
+	double		ret;
 
 	(void)fract;
 	if (retval < 0)

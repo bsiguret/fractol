@@ -6,16 +6,16 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 18:09:14 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 01:59:47 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/10 16:04:47 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-float				ft_mandelbrot(t_complex c, t_complex z, int ite)
+double	ft_mandelbrot(t_complex c, t_complex z, int ite)
 {
 	int				i;
-	float			ret;
+	double			ret;
 
 	i = 0;
 	while (i < ite)
@@ -31,12 +31,12 @@ float				ft_mandelbrot(t_complex c, t_complex z, int ite)
 	return (-1);
 }
 
-float				ft_checkvalue(t_complex comp)
+double	ft_checkvalue(t_complex comp)
 {
 	return (comp.r * comp.r + comp.i * comp.i);
 }
 
-void		mandelbrot_init(t_fractale *f)
+void	mandelbrot_init(t_fractale *f)
 {
 	f->minx = -2.0f;
 	f->maxx = 1.0f;

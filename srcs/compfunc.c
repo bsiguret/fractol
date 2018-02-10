@@ -6,13 +6,13 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 19:37:40 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 02:00:10 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/10 16:06:03 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_complex		ft_comp(float x, float y)
+t_complex		ft_comp(double x, double y)
 {
 	t_complex	comp;
 
@@ -23,7 +23,7 @@ t_complex		ft_comp(float x, float y)
 
 t_complex		ft_cinv(t_complex c)
 {
-	float		div;
+	double		div;
 
 	div = c.r * c.r + c.i * c.i;
 	c.r = c.r / div;
@@ -31,14 +31,14 @@ t_complex		ft_cinv(t_complex c)
 	return (c);
 }
 
-float			ft_cmod(t_complex comp)
+double			ft_cmod(t_complex comp)
 {
 	return (sqrt(comp.r * comp.r + comp.i * comp.i));
 }
 
-float			ft_cangle(t_complex c)
+double			ft_cangle(t_complex c)
 {
-	float		angle;
+	double		angle;
 
 	angle = atan(c.i / c.r);
 	return (angle);
@@ -52,8 +52,8 @@ t_complex		ft_conj(t_complex c)
 
 t_complex		ft_cmul(t_complex c1, t_complex c2)
 {
-	float		tmpr;
-	float		tmpi;
+	double		tmpr;
+	double		tmpi;
 
 	tmpr = c1.r;
 	tmpi = c1.i;
@@ -71,7 +71,7 @@ t_complex		ft_cadd(t_complex c1, t_complex c2)
 
 t_complex		ft_csqr(t_complex comp)
 {
-	float	tmp;
+	double	tmp;
 
 	tmp = comp.r;
 	comp.r = comp.r * comp.r - comp.i * comp.i;
@@ -86,14 +86,14 @@ t_complex		ft_cabs(t_complex c)
 	return (c);
 }
 
-t_complex		ft_cpow(t_complex c, float power)
+t_complex		ft_cpow(t_complex c, double power)
 {
-	float		tmp1;
-	float		tmp2;
-	float		tmp3;
+	double		tmp1;
+	double		tmp2;
+	double		tmp3;
 
 	tmp1 = c.r * c.r + c.i * c.i;
-	tmp1 = pow(tmp1, (float)power / 2);
+	tmp1 = pow(tmp1, (double)power / 2);
 	tmp2 = tmp1;
 	tmp3 = power * atan2(c.i, c.r);
 	tmp1 = tmp1 * cos(tmp3);

@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/10 01:58:05 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 02:40:12 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/10 16:06:09 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void			ft_print(t_data *d, t_fractale *fract)
 	while (--i >= 0)
 		pthread_join(thr[i], NULL);
 	print_img(d);
+	ft_printite(d);
 }
 
 void			*ft_fractal(void *part)
@@ -48,7 +49,7 @@ void			*ft_fractal(void *part)
 	int			x;
 	int			y;
 	t_part		*p;
-	float		retval;
+	double		retval;
 
 	p = part;
 	y = p->y;

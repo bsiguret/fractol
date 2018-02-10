@@ -6,109 +6,89 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 14:44:02 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 01:59:59 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/10 18:37:00 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// int				button_on(int button, int x, int y, t_data *data)
-// {
-// 	if (button != 4 && button != 5)
-// 		data->button[button] = 1;
-// 	data->buttonx[button] = x;
-// 	data->buttony[button] = y;
-// 	if (button == 4 || button == 5)
-// 	{
-// 		scrollbutton(button, x, y, data);
-// 		ft_refresh(data);
-// 	}
-// 	if (button == 1)
-// 		leftbuttonclick(x, y, data);
-// 	if (button == 2)
-// 		rightbuttonclick(x, y, data);
-// 	if (button == 3)
-// 		colordel(data);
-// 	return (0);
-// }
+void	move(int keycode, t_data *data)
+{
+	int	x;
+	int	y;
 
-// int				button_off(int button, int x, int y, t_data *data)
-// {
-// 	data->button[button] = 0;
-// 	data->buttonx[button] = x;
-// 	data->buttony[button] = y;
-// 	if (button == 1)
-// 	{
-// 		data->clickedrainbow = 0;
-// 		data->clickedsquare = 0;
-// 		data->clickedr = 0;
-// 		data->clickedg = 0;
-// 		data->clickedb = 0;
-// 		ft_clickset(data);
-// 	}
-// 	ft_refresh(data);
-// 	return (1);
-// }
+	if (keycode == 126 || keycode == 125)
+		y = (keycode == 126) ? data->buttony[3] - 3 : data->buttony[3] + 3;
+	else
+		y = data->buttony[3];
+	if (keycode == 123 || keycode == 124)
+		x = (keycode == 123) ? data->buttonx[3] - 3 : data->buttonx[3] + 3;
+	else
+		x = data->buttonx[3];
+	maphandle(x, y, data);
+}
 
-// void			leftbuttonclick(int x, int y, t_data *data)
-// {
-// 	if (data->menu == 1)
-// 		menuhandle(x, y, data);
-// 	if (data->colormenu == 1)
-// 		colormenuhandle(x, y, data);
-// 	if (data->menu == 1 || data->colormenu == 1)
-// 		ft_refresh(data);
-// }
+void	ite(int keycode, t_data *d)
+{
+	int	*ite;
 
-// int				rightbuttonclick(int x, int y, t_data *data)
-// {
-// 	t_color		*ptr;
+	ite = &d->onscreen->ite;
+	if (keycode == 69 && d->locked == 0)
+	{
+		*ite += 5;
+		d->onscreen->modified = 1;
+	}
+	if (keycode == 78 && *ite > 0 && d->locked == 0)
+	{
+		*ite -= 5;
+		d->onscreen->modified = 1;
+	}
+}
 
-// 	(void)x;
-// 	(void)y;
-// 	ptr = data->color;
-// 	while (ptr && ptr->hover == 0)
-// 		ptr = ptr->next;
-// 	if (ptr == NULL)
-// 	{
-// 		data->colormenu = 0;
-// 		data->editedcolor = NULL;
-// 		return (0);
-// 	}
-// 	else if (ptr->hover == 1)
-// 	{
-// 		data->colormenu = 1;
-// 		data->editedcolor = ptr;
-// 	}
-// 	ft_refresh(data);
-// 	return (1);
-// }
+int		key(int keycode, t_data *d)
+{
+	if (keycode == 126 || keycode == 125 || keycode == 123 || keycode == 124)
+		move(keycode, d);
+	if (keycode == 15)
+		reset_func(d, d->onscreen);
+	if (keycode == 53)
+		exit(0);
+	if (keycode == 69 || keycode == 78)
+		ite(keycode, d);
+	if (keycode == 69 || keycode == 78 || keycode == 46)
+		ft_print(d, d->onscreen);
+	return (0);
+}
 
-void			mousewheel(int button, int x, int y, t_data *data)
+int				maphandle(int x, int y, t_data *d)
+{
+	t_complex	map1;
+	t_complex	map2;
+
+	map1 = ft_coord(x, y, d->onscreen, d);
+	map2 = ft_coord(d->buttonx[3], d->buttony[3], d->onscreen, d);
+	if (d->buttonx[3] != x)
+	{
+		d->onscreen->tran.r += map1.r - map2.r;
+		d->buttonx[3] = x;
+		d->onscreen->modified = 1;
+	}
+	if (d->buttony[3] != y)
+	{
+		d->onscreen->tran.i += map1.i - map2.i;
+		d->buttony[3] = y;
+		d->onscreen->modified = 1;
+	}
+	ft_print(d, d->onscreen);
+	return (1);
+}
+
+int				mousewheel(int button, int x, int y, t_data *data)
 {
 	if (button == 5)
-	{
-		if (data->scrollmenuoffset > -(data->onscreen->imgy + 175))
-			data->colorchanged = 1;
-		if (data->menu == 1 && x > data->winx - data->onscreen->imgx - 50 &&
-				x < data->winx && y >= 0 && y < data->winy)
-			data->scrollmenuoffset -= (data->scrollmenuoffset >
-					-(data->onscreen->imgy + 175)) ? 25 : 0;
-		// else if (data->locked == 0)
-		// 	zoom(1, x, y, data);
-	}
+		zoom(1, x, y, data);
 	if (button == 4)
-	{
-		if (data->scrollmenuoffset < 0)
-			data->colorchanged = 1;
-		if (data->menu == 1 && x > data->winx - data->onscreen->imgx - 50 &&
-				x < data->winx && y >= 0 && y < data->winy)
-			data->scrollmenuoffset += (data->scrollmenuoffset < 0) ? 25 : 0;
-		// else if (data->locked == 0)
-		// 	zoom(-1, x, y, data);
-	}
-	if (data->scrollmenuoffset > 0)
-		data->scrollmenuoffset = 0;
-	if (data->scrollmenuoffset < -(data->onscreen->imgy + 175))
-		data->scrollmenuoffset = -(data->onscreen->imgy + 175);
+		zoom(-1, x, y, data);
+	ft_print(data, data->onscreen);
+	return (1);
 }
