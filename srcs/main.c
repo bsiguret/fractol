@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:28:23 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/09 16:08:18 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/10 02:39:15 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int				main(int argc, char **argv)
 	// mlx_hook(data->win, 4, 0, button_on, data);
 	// mlx_hook(data->win, 5, 0, button_off, data);
 	// mlx_hook(data->win, 6, 0, mouse_mov, data);
-	// ft_refresh(data);
+	ft_print(data, data->onscreen)
 	mlx_loop(data->mlx);
 	return (0);
 }

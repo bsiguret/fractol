@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:30:16 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/09 17:01:06 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/10 02:40:05 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 # include <math.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <pthread.h>
 
-# define WIN_WIDTH 1800
-# define WIN_HEIGHT 1400
+# define WIN_WIDTH 900
+# define WIN_HEIGHT 700
 
 typedef struct		s_value
 {
@@ -121,8 +122,16 @@ typedef struct		s_data
 	t_color			*color;
 	t_fractale		*mandelbrot;
 	t_fractale		*onscreen;
-	t_fractale		*screen;
+	t_fractale		*screen[7];
 }					t_data;
+
+typedef struct		s_part
+{
+	int				y;
+	t_complex		z;
+	t_fractale		*fra;
+	t_data			*data;
+}					t_part;
 
 /*
 ** PARAM INIT **
@@ -202,11 +211,33 @@ float				ft_get_retval(float retval, t_data *data);
 int					ft_get_lastcolor(float retval, t_data *data);
 int					ft_get_firstcolor(float retval, t_data *data);
 int					getstep(unsigned char val1, unsigned char val2, float ret);
+void				*ft_coloredfractal(void *part);
+
 
 /*
 ** DRAW **
 */
 void				ft_line(t_point a, t_point b, t_data *data, int color);
+void				ft_print(t_data *data, t_fractale *fract);
+void				*ft_fractal(void *part);
+
+/*
+** IMAGE FUNCTION **
+*/
+void				print_img(t_data *data);
+int					get_px_color(t_data *data, int x, int y);
+void				px_to_onscreenimg(t_data *data, int x, int y, int c);
+
+/*
+** POS DATA
+*/
+t_complex			ft_coordzoom(float x, float y, t_fractale *fra, t_data *data);
+t_complex			ft_mousecoord(float x, float y, t_fractale *fra, t_data *data);
+t_complex			ft_coord(float x, float y, t_fractale *fra, t_data *data);
+t_complex			ft_mcoord(float x, float y, t_fractale *fra, t_data *data);
+t_point				ft_point(int x, int y);
+
+
 
 /*
 ** TOOLS **
