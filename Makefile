@@ -6,7 +6,7 @@
 #    By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/26 04:36:14 by bsiguret          #+#    #+#              #
-#    Updated: 2018/02/10 15:46:35 by bsiguret         ###   ########.fr        #
+#    Updated: 2018/02/12 16:15:15 by bsiguret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,15 @@ SRCS_NAME		=	main.c\
 					paraminit2.c\
 					image.c\
 					tools.c\
+					tools2.c\
 					mandelbrot.c\
+					julia.c\
 					hook.c\
 					compfunc.c\
 					posdata.c\
 					color.c\
 					color2.c\
-					colorgradient.c\
+					smoothcolor.c\
 					thread.c
 
 SRCS_PATH		=	srcs/

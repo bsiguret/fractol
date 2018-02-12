@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:28:23 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 18:14:15 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/12 16:22:03 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int				main(int argc, char **argv)
 	data = init(fract);
 	mlx_hook(data->win, 2, 0, key, data);
 	mlx_hook(data->win, 4, 0, mousewheel, data);
-	// mlx_hook(data->win, 6, 0, mouse_mov, data);
+	mlx_hook(data->win, 6, 0, mouse_mov, data);
 	ft_print(data, data->onscreen);
 	mlx_loop(data->mlx);
 	return (0);

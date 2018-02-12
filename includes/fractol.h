@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:30:16 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 18:37:07 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/12 17:24:36 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,30 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <pthread.h>
+# include <unistd.h>
+
+/*
+** A ENLEVER !!!!!!!!!!!!!!!
+*/
+# include <stdio.h>
 
 # define WIN_WIDTH 900
 # define WIN_HEIGHT 700
+
+# define COLOR1 0x3d3d3d
+# define COLOR1_1 0xd6d6d6
+
+# define COLOR2 0x3d2900
+# define COLOR2_1 0xfdc549
+
+# define COLOR3 0x1b135b
+# define COLOR3_1 0x00e9ff
+
+# define COLOR4 0x5b1420
+# define COLOR4_1 0xff0000
+
+# define COLOR5 0x4b5b35
+# define COLOR5_1 0x50ff00
 
 typedef struct		s_value
 {
@@ -115,8 +136,8 @@ typedef struct		s_data
 	int				buttony[7];
 	t_color			*color;
 	t_fractale		*mandelbrot;
+	t_fractale		*julia;
 	t_fractale		*onscreen;
-	t_fractale		*screen[7];
 }					t_data;
 
 typedef struct		s_part
@@ -144,7 +165,7 @@ void				ft_fractset(t_data *data);
 
 t_value				**arrayinit(int xmax, int ymax);
 void				boolinit(t_data *data);
-void				colorinit(t_data *data);
+void				colorinit(t_data *data, int color, int color2);
 void				screeninit(t_data *data, int fra);
 
 
@@ -154,9 +175,9 @@ void				screeninit(t_data *data, int fra);
 
 int					mousewheel(int button, int x, int y, t_data *data);
 int					key(int keycode, t_data *d);
-void				ite(int keycode, t_data *d);
 void				move(int keycode, t_data *data);
 int					maphandle(int x, int y, t_data *d);
+int					mouse_mov(int x, int y, t_data *d);
 
 
 /*
@@ -179,8 +200,13 @@ t_complex			ft_cpow(t_complex c, double power);
 */
 
 double				ft_mandelbrot(t_complex c, t_complex z, int ite);
-void				mandelbrot_init(t_fractale *f);
 double				ft_checkvalue(t_complex comp);
+
+/*
+** JULIA **
+*/
+
+double				ft_julia(t_complex c, t_complex z, int ite);
 
 /*
 ** COLOR **
@@ -198,7 +224,7 @@ int					get_closestcolor(t_color *color);
 void				ptrswap(t_fractale **ptr1, t_fractale **ptr2, t_data *data);
 
 /*
-** COLOR GRADIENT **
+** SMOOTH COLOR **
 */
 
 int					rgb_grad(double retval, t_data *data, t_fractale *fract);
@@ -223,7 +249,6 @@ void				print_img(t_data *data);
 int					get_px_color(t_data *data, int x, int y);
 void				px_to_onscreenimg(t_data *data, int x, int y, int c);
 void				ft_printite(t_data *data);
-void				reset_func(t_data *d, t_fractale *f);
 
 /*
 ** POS DATA
@@ -243,5 +268,11 @@ void				ft_error(char *str);
 double				ft_max(double a, double b, double c);
 double				ft_min(double a, double b, double c);
 void				zoom(int zoom, int x, int y, t_data *d);
+
+void				reset_func(t_data *d, t_fractale *f);
+void				switch_color(t_data *d, int nb);
+void				color_reinit(t_data *d, int color, int color2);
+void				ite(int keycode, t_data *d);
+void				cam_lock(t_data *d);
 
 #endif

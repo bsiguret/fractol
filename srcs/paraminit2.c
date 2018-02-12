@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 15:53:57 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 15:36:02 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/12 17:15:31 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,28 @@ void			boolinit(t_data *data)
 	data->buttonx[3] = 0;
 }
 
-void			colorinit(t_data *data)
+void			colorinit(t_data *data, int color, int color2)
 {
 	data->color = (t_color*)ft_malloc(sizeof(t_color));
-	data->color->value = 0x3d3d3d;
+	data->color->value = color;
 	data->color->index = 0;
 	data->color->locked = 1;
 	data->color->clicked = 0;
 	data->color->rgb = int_to_rgb(data->color->value);
-	data->color->hsv = rgb_to_hsv(0x3d3d3d);
+	data->color->hsv = rgb_to_hsv(color);
 	data->color->next = (t_color*)ft_malloc(sizeof(t_color));
-	data->color->next->value = 0xd6d6d6;
+	data->color->next->value = color2;
 	data->color->next->index = 1;
-	data->color->next->locked = 1;
-	data->color->next->clicked = 0;
 	data->color->next->rgb = int_to_rgb(data->color->next->value);
-	data->color->next->hsv = rgb_to_hsv(0xd6d6d6);
+	data->color->next->hsv = rgb_to_hsv(color2);
 	data->color->next->next = NULL;
 	data->editedcolor = NULL;
 }
 
 void			screeninit(t_data *data, int fra)
 {
-	data->onscreen = data->mandelbrot;
-
-	if (fra != 0)
-		ptrswap(&data->onscreen, &data->screen[fra - 1], data);
+	if (fra == 0)
+		data->onscreen = data->mandelbrot;
+	if (fra == 1)
+		data->onscreen = data->julia;
 }

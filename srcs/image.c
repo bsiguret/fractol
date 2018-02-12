@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/10 02:10:25 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 18:37:54 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/12 11:27:48 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,4 @@ void				print_img(t_data *data)
 	yinc = data->onscreen->imgy + 25;
 	mlx_clear_window(data->mlx, data->win);
 	mlx_put_image_to_window(data->mlx, data->win, data->onscreen->img, 0, 0);
-}
-
-void				reset_func(t_data *d, t_fractale *f)
-{
-	f->zoompos.r = 0;
-	f->zoompos.i = 0;
-	f->zoom = 1;
-	f->offset.r = 0;
-	f->offset.i = 0;
-	f->tran.r = 0;
-	f->tran.i = 0;
-	ft_print(d, f);
 }

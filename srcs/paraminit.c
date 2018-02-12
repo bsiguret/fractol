@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:33:20 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 18:13:03 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/12 17:20:39 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ t_data			*init(int fract)
 		ft_error("New window creation failed.");
 	data->img = NULL;
 	data->mandelbrot = fractalinit(data);
+	data->julia = fractalinit(data);
 	boolinit(data);
 	ft_fractset(data);
 	screeninit(data, fract);
 	fract = 2;
-	colorinit(data);
+	colorinit(data, COLOR1, COLOR1_1);
 	mlx_img_init(data);
 	return (data);
 }
@@ -66,6 +67,12 @@ void			ft_fractset(t_data *data)
 	data->mandelbrot->maxx = 1.5;
 	data->mandelbrot->miny = -1.5;
 	data->mandelbrot->maxy = 1.5;
+	data->julia->formula = &ft_julia;
+	data->julia->locked = 0;
+	data->julia->minx = -2;
+	data->julia->maxx = 2;
+	data->julia->miny = -1.5;
+	data->julia->maxy = 1.5;
 }
 
 void			mlx_img_init(t_data *data)
