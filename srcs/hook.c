@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 14:44:02 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/12 17:22:03 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/13 20:48:11 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int		mouse_mov(int x, int y, t_data *d)
 
 int		key(int keycode, t_data *d)
 {
-	printf("%d\n", keycode);
 	if (keycode == 126 || keycode == 125 || keycode == 123 || keycode == 124)
 		move(keycode, d);
 	if (keycode == 15)
@@ -52,7 +51,7 @@ int		key(int keycode, t_data *d)
 	if (keycode == 18 || keycode == 19 || keycode == 20 || keycode == 21 ||
 		keycode == 23)
 		switch_color(d, keycode);
-	if (keycode == 57)
+	if (keycode == 37)
 		cam_lock(d);
 	if (keycode == 69 || keycode == 78)
 		ft_print(d, d->onscreen);
