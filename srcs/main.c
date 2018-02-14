@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:28:23 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/14 13:50:38 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/14 16:54:40 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int				is_fractvalid(int ac, char **av)
 	if (ac != 2)
 	{
 		ft_putendl("usage:	./fractol param");
-		ft_putendl("possible param: mandelbrot, julia, burningship");
+		ft_putendl("possible param: mandelbrot, julia, burningship, glynn");
 		exit(-1);
 	}
 	else if (ft_strcmp(av[1], "mandelbrot") == 0)
@@ -26,6 +26,8 @@ int				is_fractvalid(int ac, char **av)
 		return (1);
 	else if (ft_strcmp(av[1], "burningship") == 0)
 		return (2);
+	else if (ft_strcmp(av[1], "glynn") == 0)
+		return (3);
 	else
 		return (is_fractvalid(1, av));
 }
