@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 15:53:57 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/12 17:15:31 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/14 13:47:25 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,6 @@ void			screeninit(t_data *data, int fra)
 		data->onscreen = data->mandelbrot;
 	if (fra == 1)
 		data->onscreen = data->julia;
+	if (fra == 2)
+		data->onscreen = data->burningship;
 }

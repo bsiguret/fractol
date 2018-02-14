@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 11:18:21 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/13 20:49:05 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/14 14:46:02 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	reset_func(t_data *d, t_fractale *f)
 	f->offset.i = 0;
 	f->tran.r = 0;
 	f->tran.i = 0;
-	f->ite = 100;
+	f->ite = 50;
 	ft_print(d, f);
 }
 

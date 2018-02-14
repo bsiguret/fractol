@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:30:16 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/12 17:24:36 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/14 13:49:18 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ typedef struct		s_data
 	t_color			*color;
 	t_fractale		*mandelbrot;
 	t_fractale		*julia;
+	t_fractale		*burningship;
 	t_fractale		*onscreen;
 }					t_data;
 
@@ -152,7 +153,7 @@ typedef struct		s_part
 ** PARAM INIT **
 */
 
-int					is_fractvalid(int argc, char **argv);
+int					is_fractvalid(int ac, char **av);
 t_data				*init(int fract);
 void				mlx_img_init(t_data *data);
 void				img_init(t_fractale *fract, t_data *data);
@@ -196,17 +197,13 @@ t_complex			ft_cabs(t_complex c);
 t_complex			ft_cpow(t_complex c, double power);
 
 /*
-** MANDELBROT **
+** FRACTALE **
 */
 
 double				ft_mandelbrot(t_complex c, t_complex z, int ite);
-double				ft_checkvalue(t_complex comp);
-
-/*
-** JULIA **
-*/
-
 double				ft_julia(t_complex c, t_complex z, int ite);
+double				ft_burningship(t_complex c, t_complex z, int ite);
+double				ft_checkvalue(t_complex comp);
 
 /*
 ** COLOR **
