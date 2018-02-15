@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:33:20 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/15 16:51:19 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/15 17:02:12 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_data			*init(int fract)
 	data->burningship = fractalinit(data);
 	data->glynn = fractalinit(data);
 	data->mandeldrop = fractalinit(data);
+	data->mandelheart = fractalinit(data);
 	boolinit(data);
 	ft_fractset(data);
 	screeninit(data, fract);
