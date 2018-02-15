@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:33:20 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/15 17:02:12 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/15 17:27:12 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_data			*init(int fract)
 	data->mandelheart = fractalinit(data);
 	boolinit(data);
 	ft_fractset(data);
+	ft_fractset2(data);
 	screeninit(data, fract);
 	fract = 2;
 	colorinit(data, COLOR1, COLOR1_1);
@@ -87,11 +88,6 @@ void			ft_fractset(t_data *data)
 	data->glynn->maxx = -0.24;
 	data->glynn->miny = -0.355;
 	data->glynn->maxy = -0.715;
-	data->mandeldrop->formula = &ft_mandeldrop;
-	data->mandeldrop->minx = -4;
-	data->mandeldrop->maxx = 4;
-	data->mandeldrop->miny = -1.75;
-	data->mandeldrop->maxy = 4.25;
 }
 
 void			mlx_img_init(t_data *data)

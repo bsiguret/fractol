@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:30:16 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/15 17:04:48 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/15 17:26:10 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ t_value				**arrayinit(int xmax, int ymax);
 void				boolinit(t_data *data);
 void				colorinit(t_data *data, int color, int color2);
 void				screeninit(t_data *data, int fra);
+void				ft_fractset2(t_data *data);
 
 
 /*
@@ -208,7 +209,7 @@ double				ft_julia(t_complex c, t_complex z, int ite);
 double				ft_burningship(t_complex c, t_complex z, int ite);
 double				ft_glynn(t_complex c, t_complex z, int ite);
 double				ft_mandeldrop(t_complex c, t_complex z, int ite);
-double				ft_mandeldrop(t_complex c, t_complex z, int ite);
+double				ft_mandelheart(t_complex c, t_complex z, int ite);
 double				ft_checkvalue(t_complex comp);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 15:53:57 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/15 17:05:07 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/15 17:27:43 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,18 @@ void			screeninit(t_data *data, int fra)
 		data->onscreen = data->mandeldrop;
 	else if (fra == 5)
 		data->onscreen = data->mandelheart;
+}
+
+void			ft_fractset2(t_data *data)
+{
+	data->mandeldrop->formula = &ft_mandeldrop;
+	data->mandeldrop->minx = -4;
+	data->mandeldrop->maxx = 4;
+	data->mandeldrop->miny = -1.75;
+	data->mandeldrop->maxy = 4.25;
+	data->mandelheart->formula = &ft_mandelheart;
+	data->mandelheart->minx = -4;
+	data->mandelheart->maxx = 4;
+	data->mandelheart->miny = 3.75;
+	data->mandelheart->maxy = -2.25;
 }

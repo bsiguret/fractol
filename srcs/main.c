@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:28:23 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/15 16:47:00 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/15 17:28:36 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int				is_fractvalid(int ac, char **av)
 		return (3);
 	else if (ft_strcmp(av[1], "mandeldrop") == 0)
 		return (4);
+	else if (ft_strcmp(av[1], "mandelheart") == 0)
+		return (5);
 	else
 		return (is_fractvalid(1, av));
 }
