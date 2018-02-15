@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 15:53:57 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/14 17:06:24 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/15 16:46:24 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,6 @@ void			screeninit(t_data *data, int fra)
 		data->onscreen = data->burningship;
 	else if (fra == 3)
 		data->onscreen = data->glynn;
+	else if (fra == 4)
+		data->onscreen = data->mandeldrop;
 }

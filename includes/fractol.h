@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:30:16 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/14 17:06:08 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/15 16:46:36 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,8 @@ typedef struct		s_data
 	t_fractale		*mandelbrot;
 	t_fractale		*julia;
 	t_fractale		*burningship;
-	t_fractale		*glynn;	
+	t_fractale		*glynn;
+	t_fractale		*mandeldrop;
 	t_fractale		*onscreen;
 }					t_data;
 
@@ -205,6 +206,7 @@ double				ft_mandelbrot(t_complex c, t_complex z, int ite);
 double				ft_julia(t_complex c, t_complex z, int ite);
 double				ft_burningship(t_complex c, t_complex z, int ite);
 double				ft_glynn(t_complex c, t_complex z, int ite);
+double				ft_mandeldrop(t_complex c, t_complex z, int ite);
 double				ft_checkvalue(t_complex comp);
 
 /*

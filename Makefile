@@ -6,7 +6,7 @@
 #    By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/26 04:36:14 by bsiguret          #+#    #+#              #
-#    Updated: 2018/02/14 16:55:22 by bsiguret         ###   ########.fr        #
+#    Updated: 2018/02/15 16:50:08 by bsiguret         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS_NAME		=	main.c\
 					julia.c\
 					burningship.c\
 					glynn.c\
+					mandeldrop.c\
 					hook.c\
 					compfunc.c\
 					posdata.c\
