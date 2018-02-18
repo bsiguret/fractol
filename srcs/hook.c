@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 14:44:02 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/13 20:48:11 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/16 16:58:35 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,18 @@ int		key(int keycode, t_data *d)
 		exit(0);
 	if (keycode == 69 || keycode == 78)
 		ite(keycode, d);
-	if (keycode == 18 || keycode == 19 || keycode == 20 || keycode == 21 ||
-		keycode == 23)
+	if ((keycode >= 18 && keycode <= 21) || keycode == 23)
 		switch_color(d, keycode);
+	if (keycode >= 83 && keycode <= 88)
+		fract_switch(d, keycode);
 	if (keycode == 37)
 		cam_lock(d);
-	if (keycode == 69 || keycode == 78)
+	if (keycode == 69 || keycode == 78 || (keycode >= 83 && keycode <= 88))
 		ft_print(d, d->onscreen);
 	return (1);
 }
 
-int				maphandle(int x, int y, t_data *d)
+int		maphandle(int x, int y, t_data *d)
 {
 	t_complex	map1;
 	t_complex	map2;
@@ -81,7 +82,7 @@ int				maphandle(int x, int y, t_data *d)
 	return (1);
 }
 
-int				mousewheel(int button, int x, int y, t_data *data)
+int		mousewheel(int button, int x, int y, t_data *data)
 {
 	if (button == 5)
 		zoom(1, x, y, data);

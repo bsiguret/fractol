@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:45:41 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 15:35:25 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/16 17:05:40 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ double		ft_min(double a, double b, double c)
 	return (c);
 }
 
-void			zoom(int zoom, int x, int y, t_data *d)
+void		zoom(int zoom, int x, int y, t_data *d)
 {
 	t_complex	coordcursor;
 

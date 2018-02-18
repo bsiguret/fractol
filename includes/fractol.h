@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/27 17:30:16 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/15 17:26:10 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/16 17:34:44 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <unistd.h>
-
-/*
-** A ENLEVER !!!!!!!!!!!!!!!
-*/
-# include <stdio.h>
 
 # define WIN_WIDTH 900
 # define WIN_HEIGHT 700
@@ -43,6 +38,9 @@
 
 # define COLOR5 0x4b5b35
 # define COLOR5_1 0x50ff00
+
+# define CM c + m
+# define XM x + m
 
 typedef struct		s_value
 {
@@ -173,7 +171,6 @@ void				colorinit(t_data *data, int color, int color2);
 void				screeninit(t_data *data, int fra);
 void				ft_fractset2(t_data *data);
 
-
 /*
 ** HOOK FUNCTIONS
 */
@@ -183,7 +180,6 @@ int					key(int keycode, t_data *d);
 void				move(int keycode, t_data *data);
 int					maphandle(int x, int y, t_data *d);
 int					mouse_mov(int x, int y, t_data *d);
-
 
 /*
 ** COMPLEX
@@ -238,7 +234,6 @@ int					ft_get_firstcolor(double retval, t_data *data);
 int					getstep(unsigned char val1, unsigned char val2, double ret);
 void				*ft_coloredfractal(void *part);
 
-
 /*
 ** DRAW **
 */
@@ -257,10 +252,13 @@ void				ft_printite(t_data *data);
 /*
 ** POS DATA
 */
-t_complex			ft_coordzoom(double x, double y, t_fractale *fra, t_data *data);
-t_complex			ft_mousecoord(double x, double y, t_fractale *fra, t_data *data);
+t_complex			ft_coordzoom(double x, double y, t_fractale *fra,
+	t_data *data);
+t_complex			ft_mousecoord(double x, double y, t_fractale *fra,
+	t_data *data);
 t_complex			ft_coord(double x, double y, t_fractale *fra, t_data *data);
-t_complex			ft_mcoord(double x, double y, t_fractale *fra, t_data *data);
+t_complex			ft_mcoord(double x, double y, t_fractale *fra,
+	t_data *data);
 t_point				ft_point(int x, int y);
 
 /*
@@ -278,5 +276,7 @@ void				switch_color(t_data *d, int nb);
 void				color_reinit(t_data *d, int color, int color2);
 void				ite(int keycode, t_data *d);
 void				cam_lock(t_data *d);
+
+void				fract_switch(t_data *data, int keycode);
 
 #endif

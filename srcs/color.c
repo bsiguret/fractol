@@ -6,7 +6,7 @@
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 16:39:26 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/10 16:07:18 by bsiguret         ###   ########.fr       */
+/*   Updated: 2018/02/16 17:30:39 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ int			hsv_to_rgb(t_hsv hsv)
 	x = c * (1 - fabs(h - ((int)h / 2 * 2) - 1));
 	m = (double)hsv.v / 100 - c;
 	if (h >= 0 && h < 1)
-		return (get_rgb(round(c + m * 255), round(x + m * 255), round(m * 255)));
+		return (get_rgb(round(CM * 255), round(XM * 255), round(m * 255)));
 	if (h >= 1 && h < 2)
-		return (get_rgb(round(x + m * 255), round(c + m * 255), round(m * 255)));
+		return (get_rgb(round(XM * 255), round(CM * 255), round(m * 255)));
 	if (h >= 2 && h < 3)
-		return (get_rgb(round(m * 255), round(c + m * 255), round(x + m * 255)));
+		return (get_rgb(round(m * 255), round(CM * 255), round(XM * 255)));
 	if (h >= 3 && h < 4)
-		return (get_rgb(round(m * 255), round(x + m * 255), round(c + m * 255)));
+		return (get_rgb(round(m * 255), round(x + m * 255), round(CM * 255)));
 	if (h >= 4 && h < 5)
-		return (get_rgb(round(x + m * 255), round(m * 255), round(c + m * 255)));
-	return (get_rgb(round(c + m * 255), round(m * 255), round(x + m * 255)));
+		return (get_rgb(round(XM * 255), round(m * 255), round(CM * 255)));
+	return (get_rgb(round(CM * 255), round(m * 255), round(XM * 255)));
 }
 
 t_hsv		rgb_to_hsv(int color)
@@ -84,7 +84,7 @@ void		modifysv(int x, int y, t_data *data)
 	data->colorchanged = 1;
 }
 
-void			ptrswap(t_fractale **ptr1, t_fractale **ptr2, t_data *data)
+void		ptrswap(t_fractale **ptr1, t_fractale **ptr2, t_data *data)
 {
 	t_fractale	*tmp;
 

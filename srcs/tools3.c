@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   tools3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsiguret <bsiguret@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/12 16:11:43 by bsiguret          #+#    #+#             */
-/*   Updated: 2018/02/16 16:58:04 by bsiguret         ###   ########.fr       */
+/*   Created: 2018/02/15 17:37:41 by bsiguret          #+#    #+#             */
+/*   Updated: 2018/02/16 17:05:29 by bsiguret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double			ft_julia(t_complex c, t_complex z, int ite)
+void	fract_switch(t_data *data, int keycode)
 {
-	int			i;
-	double		retval;
-
-	i = 0;
-	while (i < ite)
-	{
-		c = ft_cadd(ft_csqr(c), z);
-		if (ft_checkvalue(c) > 512)
-		{
-			retval = (i - log(log(ft_cmod(c)) / log(100)) / log(2)) / ite;
-			return (retval);
-		}
-		i++;
-	}
-	return (-1);
+	if (keycode == 83)
+		data->onscreen = data->mandelbrot;
+	else if (keycode == 84)
+		data->onscreen = data->julia;
+	else if (keycode == 85)
+		data->onscreen = data->burningship;
+	else if (keycode == 86)
+		data->onscreen = data->glynn;
+	else if (keycode == 87)
+		data->onscreen = data->mandeldrop;
+	else if (keycode == 88)
+		data->onscreen = data->mandelheart;
 }
